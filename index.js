@@ -11,13 +11,22 @@ function validateEmail(){
     const regex = new RegExp(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
 
     if(!regex.test(emailInput.value)){
-        console.log('email invalido')
+        setError(true);
         return false;
     }else{
-        console.log('email valido!!!')
+        setError(false);
         return true;
     }
+}
 
+function setError(boolean){
+    if(boolean){
+        error.style.display = 'block';
+        emailInput.style.border = '2px solid red'
+    }else{
+        emailInput.style.border = '';
+        error.style.display = 'none';
+    }
 }
 
 function enableSucess(event){
