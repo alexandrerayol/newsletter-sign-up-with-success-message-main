@@ -1,11 +1,17 @@
 const form = document.querySelector(".form form");
 const btn = document.querySelector("#btn-submit");
-
 const error = document.querySelector("#error-msg");
 const emailInput = document.querySelector("#user-email");
+const container = document.querySelector('.container');
+const hidden = document.querySelector('.hidden');
+const btnConfirm = document.querySelector('#btn-confirm');
+const emailSuccess = document.querySelector('#suscess-page-email');
 
 form.addEventListener('input', validateEmail);
+
 btn.addEventListener('click', enableSucess);
+
+btnConfirm.addEventListener('click', () => {location.reload()})
 
 function validateEmail(){
     const regex = new RegExp(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
@@ -33,8 +39,15 @@ function enableSucess(event){
     event.preventDefault();
     
     if(validateEmail()){
-        console.log('entrou na tela de sucess');
+        container.style.display = 'none';
+        hidden.style.display = 'flex';
+        setEmailSuccess();
     }else{
         validateEmail();
     }
+}
+
+function setEmailSuccess(){
+    let userEmailText = emailInput.value;
+    emailSuccess.innerText = userEmailText;
 }
